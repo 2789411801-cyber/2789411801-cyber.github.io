@@ -1,13 +1,13 @@
 # Site settings
-title: My Blog
-tagline: "Thoughts & Stories"
+title: 小猪爱洗澡
+tagline: "Cyber's Blog"
 description: >-
-  A clean personal blog — thoughts on technology, life, and everything in between.
-author: Your Name
-email: your.email@example.com
+  技术与生活的个人博客 — 记录思考，分享创造。
+author: Cyber
+email: ""
 
 # URLs
-url: "https://yourusername.github.io"
+url: "https://2789411801-cyber.github.io"
 baseurl: ""
 permalink: /:year/:month/:day/:title/
 
@@ -16,7 +16,7 @@ logo: ""
 
 # Social links
 social:
-  github: ""
+  github: "2789411801-cyber"
   twitter: ""
   linkedin: ""
 
@@ -66,4 +66,4 @@ kramdown:
   syntax_highlighter: rouge
 
 # Footer about text
-footer_about: "A personal blog about technology, life, and ideas. Built with Jekyll and deployed on GitHub Pages."
+footer_about: "小猪爱洗澡 — Cyber 的个人博客。记录技术与生活的思考，用 Jekyll 构建，部署于 GitHub Pages。"

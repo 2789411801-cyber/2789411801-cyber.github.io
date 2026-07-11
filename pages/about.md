@@ -1,22 +1,22 @@
 ---
 layout: page
-title: About
+title: 关于
 permalink: /about/
 sidebar: false
 ---
 
-Welcome to my personal blog. I write about technology, software development, and random thoughts on life.
+欢迎来到**小猪爱洗澡**，Cyber 的个人博客。
 
-## About Me
+## 关于我
 
-I'm passionate about building things with code and sharing what I learn along the way. This blog is my corner of the internet where I document ideas, tutorials, and reflections.
+热爱编程与技术，喜欢把事情做出来并分享过程中的思考。这个博客是我在互联网上的一小片空间，用来记录想法、教程和感悟。
 
-## What You'll Find Here
+## 这里有什么
 
-- **Tech deep-dives** — Tutorials and explorations of interesting topics in software engineering
-- **Project write-ups** — Behind-the-scenes looks at things I've built
-- **Thoughts & essays** — Occasional musings on technology, productivity, and life
+- **技术深入** — 软件工程中有趣话题的探索与教程
+- **项目记录** — 我做过的项目的幕后故事
+- **随笔思考** — 关于技术、效率和生活的随笔
 
-## Contact
+## 联系我
 
-Feel free to reach out to me on [GitHub](https://github.com/{{ site.social.github }}) or [Twitter](https://twitter.com/{{ site.social.twitter }}).
+欢迎通过 [GitHub](https://github.com/{{ site.social.github }}) 与我交流。
