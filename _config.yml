@@ -8,7 +8,7 @@ email: ""
 
 # URLs
 url: "https://2789411801-cyber.github.io"
-baseurl: ""
+baseurl: "/back-to-the-lake"
 permalink: /:year/:month/:day/:title/
 
 # Logo (optional — set to a path like /assets/images/logo.svg)
