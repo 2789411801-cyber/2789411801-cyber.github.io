@@ -179,6 +179,25 @@
   margin-bottom: 1rem;
 }
 
+.hero-tagline {
+  font-family: var(--font-reading);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 0.5rem;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+.hero-attribution {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
 .hero-subtitle {
   font-family: var(--font-reading);
   font-size: 1.15rem;
@@ -195,4 +214,9 @@
   background: var(--accent);
   margin: 0 auto;
   opacity: 0.5;
+}
+
+/* Category page hero — slightly smaller */
+.hero-category {
+  padding: 3rem 0 2rem;
 }

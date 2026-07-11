@@ -34,9 +34,10 @@
 
 .content-area {
   min-width: 0;
-}
 
-.no-sidebar .content-area {
-  max-width: 800px;
-  margin: 0 auto;
+  &.no-sidebar {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0 4rem;
+  }
 }

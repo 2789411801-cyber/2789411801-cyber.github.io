@@ -1,8 +1,8 @@
 # Site settings
 title: 小猪爱洗澡
-tagline: "Cyber's Blog"
+tagline: "你消磨了岁月，岁月也消磨了你。你至今未能写出诗"
 description: >-
-  技术与生活的个人博客 — 记录思考，分享创造。
+  一个存放文字的地方——随笔、日常、与未完成的故事。
 author: Cyber
 email: ""
 
@@ -66,4 +66,4 @@ kramdown:
   syntax_highlighter: rouge
 
 # Footer about text
-footer_about: "小猪爱洗澡 — Cyber 的个人博客。记录技术与生活的思考，用 Jekyll 构建，部署于 GitHub Pages。"
+footer_about: "小猪爱洗澡 — 一个存放文字的地方。用 Jekyll 构建，部署于 GitHub Pages。"

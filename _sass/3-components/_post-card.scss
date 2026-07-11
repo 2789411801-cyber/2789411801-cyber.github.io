@@ -127,3 +127,140 @@
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ================================
+   Category Cards (Homepage)
+   ================================ */
+
+.category-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 1rem 0 4rem;
+
+  @include breakpoint-down(md) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1rem 0 3rem;
+  }
+}
+
+.category-card {
+  text-decoration: none;
+  display: block;
+}
+
+.category-card-inner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  &:hover {
+    border-color: var(--accent-soft);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .category-icon {
+      transform: scale(1.1);
+    }
+  }
+
+  @include breakpoint-down(sm) {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.category-icon {
+  display: block;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.35s ease;
+}
+
+.category-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.03em;
+}
+
+.category-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.05em;
+}
+
+/* ================================
+   Recent Posts (Homepage)
+   ================================ */
+
+.recent-posts {
+  padding-bottom: 3rem;
+}
+
+.recent-posts-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+  position: relative;
+  padding-bottom: 0.6rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+}
+
+/* Category display in card meta */
+.card-category {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 4rem 0;
+  font-family: var(--font-reading);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-muted);
+}

@@ -3,43 +3,70 @@ layout: default
 ---
 
 <header class="hero container">
-  <p class="hero-eyebrow">Thoughts on code, design &amp; life</p>
   <h1 class="hero-title">{{ site.title }}</h1>
-  <p class="hero-subtitle">{{ site.description }}</p>
+  <p class="hero-tagline">{{ site.tagline }}</p>
   <div class="hero-line"></div>
+  <p class="hero-attribution">— 博尔赫斯</p>
 </header>
 
 <main class="container">
-  <div class="content-grid">
-    <section>
-      <div class="article-list">
-        {% for post in paginator.posts %}
-        <article class="article-card">
-          <div class="card-meta">
-            <span class="card-date">{{ post.date | date: "%Y.%m.%d" }}</span>
-            {% assign word_count = post.content | strip_html | number_of_words %}
-            {% assign reading_time = word_count | divided_by: 200 | plus: 1 %}
-            <span>&middot;</span>
-            <span class="card-reading-time">{{ reading_time }} min read</span>
-          </div>
-          <h2 class="card-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </h2>
-          <p class="card-excerpt">
-            {{ post.excerpt | strip_html }}
-          </p>
-          <div class="card-tags">
-            {% for tag in post.tags %}
-            <a href="/tags/#{{ tag | slugify }}" class="tag">{{ tag }}</a>
-            {% endfor %}
-          </div>
-        </article>
-        {% endfor %}
+  <section class="category-cards">
+    <a href="{{ '/qingyu/' | relative_url }}" class="category-card">
+      <div class="category-card-inner">
+        <span class="category-icon">&#x1F4AD;</span>
+        <h2 class="category-name">轻语</h2>
+        {% assign qingyu_count = site.categories['轻语'] | size %}
+        <span class="category-count">{{ qingyu_count }} 篇</span>
       </div>
+    </a>
 
-      {% include pagination.html %}
-    </section>
+    <a href="{{ '/mantan/' | relative_url }}" class="category-card">
+      <div class="category-card-inner">
+        <span class="category-icon">&#x2601;</span>
+        <h2 class="category-name">漫谈</h2>
+        {% assign mantan_count = site.categories['漫谈'] | size %}
+        <span class="category-count">{{ mantan_count }} 篇</span>
+      </div>
+    </a>
 
-    {% include sidebar.html %}
-  </div>
+    <a href="{{ '/gushi/' | relative_url }}" class="category-card">
+      <div class="category-card-inner">
+        <span class="category-icon">&#x1F4D6;</span>
+        <h2 class="category-name">故事</h2>
+        {% assign gushi_count = site.categories['故事'] | size %}
+        <span class="category-count">{{ gushi_count }} 篇</span>
+      </div>
+    </a>
+  </section>
+
+  {% if paginator.posts.size > 0 %}
+  <section class="recent-posts">
+    <h2 class="recent-posts-title">最近更新</h2>
+    <div class="article-list">
+      {% for post in paginator.posts %}
+      <article class="article-card">
+        <div class="card-meta">
+          <span class="card-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+          {% assign word_count = post.content | strip_html | number_of_words %}
+          {% assign reading_time = word_count | divided_by: 200 | plus: 1 %}
+          <span>&middot;</span>
+          <span class="card-reading-time">{{ reading_time }} min read</span>
+          {% if post.categories.size > 0 %}
+          <span>&middot;</span>
+          <span class="card-category">{{ post.categories | first }}</span>
+          {% endif %}
+        </div>
+        <h3 class="card-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h3>
+        <p class="card-excerpt">
+          {{ post.excerpt | strip_html }}
+        </p>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% include pagination.html %}
+  </section>
+  {% endif %}
 </main>

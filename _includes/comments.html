@@ -1,0 +1,43 @@
+<!-- Comment Section -->
+<section class="comments-section">
+  <div class="comments-header">
+    <h2 class="comments-title">留言</h2>
+    <p class="comments-notice">
+      <span class="notice-icon">&#x270D;</span>
+      留言请勿超过 <strong>500</strong> 个简体中文字符。按时间先后排序显示。
+    </p>
+  </div>
+
+  <div class="comments-divider"></div>
+
+  {% assign giscus = site.data.giscus.giscus %}
+  {% if giscus.repo_id != "REPO_ID_PLACEHOLDER" and giscus.category_id != "CATEGORY_ID_PLACEHOLDER" %}
+  <!-- giscus comments -->
+  <div class="giscus-wrapper">
+    <script src="https://giscus.app/client.js"
+      data-repo="{{ giscus.repo }}"
+      data-repo-id="{{ giscus.repo_id }}"
+      data-category="{{ giscus.category }}"
+      data-category-id="{{ giscus.category_id }}"
+      data-mapping="{{ giscus.mapping }}"
+      data-strict="0"
+      data-reactions-enabled="{{ giscus.reactions_enabled }}"
+      data-emit-metadata="{{ giscus.emit_metadata }}"
+      data-input-position="{{ giscus.input_position }}"
+      data-theme="{{ giscus.theme }}"
+      data-lang="{{ giscus.lang }}"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+  {% else %}
+  <!-- giscus not yet configured — show setup hint -->
+  <div class="comments-placeholder">
+    <p>评论功能即将开放。</p>
+    <p class="setup-hint">
+      <small>博主：请前往 <a href="https://giscus.app" target="_blank" rel="noopener">giscus.app</a> 获取配置 ID，
+      填入 <code>_data/giscus.yml</code> 即可启用留言。</small>
+    </p>
+  </div>
+  {% endif %}
+</section>
