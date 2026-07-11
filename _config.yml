@@ -1,9 +1,9 @@
 # Site settings
-title: 小猪爱洗澡
+title: 湖畔
 tagline: "你消磨了岁月，岁月也消磨了你。你至今未能写出诗"
 description: >-
   一个存放文字的地方——随笔、日常、与未完成的故事。
-author: 迷途小猪
+author: 诗心
 email: ""
 
 # URLs
@@ -66,4 +66,4 @@ kramdown:
   syntax_highlighter: rouge
 
 # Footer about text
-footer_about: "小猪爱洗澡 — 一个存放文字的地方。用 Jekyll 构建，部署于 GitHub Pages。"
+footer_about: "湖畔 — 一个存放文字的地方。用 Jekyll 构建，部署于 GitHub Pages。"
