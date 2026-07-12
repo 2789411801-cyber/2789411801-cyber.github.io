@@ -1,22 +1,22 @@
 :root {
-  /* Warm paper palette */
-  --bg-primary: #faf8f5;
-  --bg-secondary: #f3efe8;
-  --bg-card: #ffffff;
-  --bg-hover: #faf7f2;
-  --text-primary: #1a1a16;
-  --text-secondary: #5c5b55;
-  --text-muted: #8c8a82;
-  --border-color: #e6e2d8;
-  --border-subtle: #f0ebe0;
-  --accent: #b8751e;
-  --accent-soft: #f5e6d0;
-  --accent-glow: rgba(184, 117, 30, 0.12);
-  --tag-bg: #f4efe4;
-  --tag-text: #7a6e5c;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 24px rgba(0,0,0,0.06);
-  --shadow-lg: 0 12px 48px rgba(0,0,0,0.08);
+  /* Warm oak palette — soft, easy on the eyes */
+  --bg-primary: #3b2e20;
+  --bg-secondary: #34281b;
+  --bg-card: #463726;
+  --bg-hover: #504030;
+  --text-primary: #f0e2cc;
+  --text-secondary: #c4b090;
+  --text-muted: #918066;
+  --border-color: #5a4a36;
+  --border-subtle: #4a3c2a;
+  --accent: #d8a94e;
+  --accent-soft: #554026;
+  --accent-glow: rgba(216, 169, 78, 0.10);
+  --tag-bg: #4a3a26;
+  --tag-text: #b49c74;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.3);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.4);
 
   /* Typography */
   --font-display: 'DM Serif Display', Georgia, serif;
@@ -38,21 +38,21 @@
 }
 
 [data-theme="dark"] {
-  --bg-primary: #131310;
-  --bg-secondary: #1c1b17;
-  --bg-card: #1f1e19;
-  --bg-hover: #26241e;
-  --text-primary: #e8e6de;
-  --text-secondary: #a8a69c;
-  --text-muted: #706e66;
-  --border-color: #2e2c25;
-  --border-subtle: #26241e;
-  --accent: #d49838;
-  --accent-soft: #3d2e18;
-  --accent-glow: rgba(212, 152, 56, 0.15);
-  --tag-bg: #2a281f;
-  --tag-text: #a09880;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
-  --shadow-md: 0 4px 24px rgba(0,0,0,0.3);
-  --shadow-lg: 0 12px 48px rgba(0,0,0,0.4);
+  --bg-primary: #23180c;
+  --bg-secondary: #2a1d10;
+  --bg-card: #322315;
+  --bg-hover: #3a2a1a;
+  --text-primary: #eadbc2;
+  --text-secondary: #b09e80;
+  --text-muted: #7e6e54;
+  --border-color: #4a3824;
+  --border-subtle: #3a2a18;
+  --accent: #dba840;
+  --accent-soft: #48301a;
+  --accent-glow: rgba(219, 168, 64, 0.10);
+  --tag-bg: #382716;
+  --tag-text: #a08a68;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.35);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.45);
 }

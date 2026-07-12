@@ -9,7 +9,7 @@
 
   .entry-title {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.015em;
@@ -21,7 +21,7 @@
     align-items: center;
     gap: 1rem;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
     letter-spacing: 0.02em;
 
@@ -52,13 +52,13 @@
 
   .entry-content {
     font-family: var(--font-reading);
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 1.85;
     color: var(--text-primary);
 
     h2 {
       font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-size: 1.65rem;
       font-weight: 400;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
@@ -66,7 +66,7 @@
 
     h3 {
       font-family: var(--font-display);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 400;
       margin-top: 2rem;
       margin-bottom: 0.75rem;
@@ -107,14 +107,14 @@
 
   .tag-label {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
     margin-right: 0.25rem;
   }
 
   .tag-link {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     padding: 0.3rem 0.75rem;
     background: var(--tag-bg);
     color: var(--tag-text);
@@ -163,7 +163,7 @@
   .nav-label {
     display: block;
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -172,7 +172,7 @@
 
   .nav-title {
     display: block;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -196,7 +196,7 @@
 
 .comments-title {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
   letter-spacing: 0.02em;
@@ -204,7 +204,7 @@
 
 .comments-notice {
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   line-height: 1.6;
   padding: 0.75rem 1rem;

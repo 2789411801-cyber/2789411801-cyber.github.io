@@ -27,7 +27,7 @@
 /* Brand */
 .nav-brand {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   color: var(--text-primary);
   text-decoration: none;
   letter-spacing: -0.01em;
@@ -60,9 +60,9 @@
   a {
     text-decoration: none;
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
-    padding: 0.4rem 0.85rem;
+    padding: 0.45rem 0.9rem;
     border-radius: var(--radius-sm);
     transition: all var(--transition);
     letter-spacing: 0.01em;
@@ -147,76 +147,82 @@
 
     a {
       padding: 0.75rem 1rem;
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
   }
 }
 
 /* Hero */
 .hero {
-  padding: 5rem 0 3rem;
+  padding: 6rem 0 4rem;
   text-align: center;
 
   @include breakpoint-down(sm) {
-    padding: 3rem 0 2rem;
+    padding: 3.5rem 0 2.5rem;
   }
-}
-
-.hero-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  margin-bottom: 1rem;
 }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-  margin-bottom: 1rem;
+  font-size: clamp(3.2rem, 7vw, 5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
 }
 
 .hero-tagline {
   font-family: var(--font-reading);
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   font-style: italic;
   color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto 0.5rem;
-  line-height: 1.8;
-  letter-spacing: 0.02em;
+  max-width: 640px;
+  margin: 0 auto 0.4rem;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+
+  @include breakpoint-down(sm) {
+    font-size: 1.2rem;
+  }
 }
 
 .hero-attribution {
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
-  margin-bottom: 2rem;
-  letter-spacing: 0.05em;
-}
-
-.hero-subtitle {
-  font-family: var(--font-reading);
-  font-size: 1.15rem;
-  color: var(--text-secondary);
-  max-width: 520px;
-  margin: 0 auto 2rem;
-  font-style: italic;
-  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.06em;
 }
 
 .hero-line {
-  width: 60px;
-  height: 2px;
+  width: 48px;
+  height: 1px;
   background: var(--accent);
-  margin: 0 auto;
-  opacity: 0.5;
+  margin: 0 auto 2rem;
+  opacity: 0.35;
+  position: relative;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+  }
+
+  &::before { left: -14px; }
+  &::after { right: -14px; }
 }
 
 /* Category page hero — slightly smaller */
 .hero-category {
-  padding: 3rem 0 2rem;
+  padding: 3.5rem 0 2.5rem;
+
+  .hero-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.3rem);
+  }
 }

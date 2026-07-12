@@ -15,7 +15,7 @@
 
 .sidebar-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
   position: relative;
@@ -39,29 +39,34 @@
 }
 
 .author-avatar {
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: var(--accent-soft);
   margin: 0 auto 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  color: var(--accent);
+  overflow: hidden;
+  border: 3px solid var(--border-subtle);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .author-name {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   margin-bottom: 0.3rem;
 }
 
 .author-bio {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 0.85rem;
 }
 
@@ -100,8 +105,8 @@
 
 .tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  padding: 0.3rem 0.75rem;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.8rem;
   background: var(--tag-bg);
   color: var(--tag-text);
   border-radius: 100px;

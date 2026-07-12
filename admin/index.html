@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>湖畔 · 管理面板</title>
+  <style>
+    :root {
+      --bg: #23180c;
+      --bg-card: #322315;
+      --bg-input: #1a0f06;
+      --text: #eadbc2;
+      --text-muted: #b09e80;
+      --border: #4a3824;
+      --accent: #dba840;
+      --accent-hover: #e8bf5a;
+      --danger: #c44;
+      --success: #5a8;
+      --radius: 10px;
+      --font: 'Instrument Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* Login */
+    .login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .login-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+    }
+    .login-card h1 { font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 400; }
+    .login-card p { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .login-card label { display: block; text-align: left; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .login-card input {
+      width: 100%; padding: 0.75rem 1rem; background: var(--bg-input);
+      border: 1px solid var(--border); border-radius: 6px; color: var(--text);
+      font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 1.5rem; outline: none;
+    }
+    .login-card input:focus { border-color: var(--accent); }
+    .login-hint { font-size: 0.78rem; color: var(--text-muted); margin-top: -1rem; margin-bottom: 1.5rem; text-align: left; }
+    .login-hint a { color: var(--accent); }
+    .btn { display: inline-block; padding: 0.7rem 1.8rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.95rem; font-family: var(--font); transition: all 0.2s; text-decoration: none; }
+    .btn-primary { background: var(--accent); color: #1a0f06; font-weight: 600; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-sm { padding: 0.4rem 1rem; font-size: 0.82rem; }
+    .btn-danger { background: transparent; border: 1px solid var(--danger); color: var(--danger); }
+    .btn-danger:hover { background: var(--danger); color: #fff; }
+
+    /* Header */
+    .admin-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-header h1 { font-size: 1.5rem; font-weight: 400; }
+    .admin-header .user-info { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
+    .admin-header .user-info img { width: 28px; height: 28px; border-radius: 50%; }
+
+    /* Dashboard grid */
+    .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+    @media (max-width: 640px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+    }
+    .card h2 { font-size: 1.1rem; font-weight: 400; margin-bottom: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; }
+
+    /* Quick actions */
+    .quick-actions { display: flex; flex-direction: column; gap: 0.6rem; }
+    .quick-action {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.7rem 1rem; background: var(--bg-input); border-radius: 6px;
+      text-decoration: none; color: var(--text); font-size: 0.9rem; transition: all 0.2s;
+    }
+    .quick-action:hover { background: var(--border); }
+    .quick-action .icon { margin-right: 0.5rem; }
+
+    /* Post list */
+    .post-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem;
+    }
+    .post-item:last-child { border-bottom: none; }
+    .post-item .post-date { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; margin-left: 0.5rem; }
+    .post-item .post-cat { font-size: 0.72rem; color: var(--accent); margin-left: 0.5rem; }
+
+    /* Editor */
+    .editor-hidden { display: none; }
+    .editor-visible { display: block; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.65rem 0.9rem; background: var(--bg-input);
+      border: 1px solid var(--border); border-radius: 6px; color: var(--text);
+      font-family: var(--font); font-size: 0.92rem; outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { min-height: 320px; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+    .form-hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; padding: 0.85rem 1.5rem;
+      border-radius: 8px; color: #fff; font-size: 0.9rem; z-index: 999;
+      opacity: 0; transform: translateY(20px); transition: all 0.3s;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast-success { background: #3a6; }
+    .toast-error { background: #c33; }
+
+    /* Back link */
+    .back-link { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; }
+    .back-link:hover { color: var(--accent); }
+
+    .loading { text-align: center; padding: 3rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<!-- ========== LOGIN SCREEN ========== -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <h1>🌊 湖畔 · 管理</h1>
+    <p>仅限站长「诗心」访问</p>
+    <label for="tokenInput">GitHub Personal Access Token</label>
+    <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    <p class="login-hint">
+      需要 <code>repo</code> 权限 &nbsp;|&nbsp;
+      <a href="https://github.com/settings/tokens/new?scopes=repo&description=湖畔博客管理面板" target="_blank" rel="noopener">创建 Token →</a>
+    </p>
+    <button class="btn btn-primary" id="loginBtn" style="width:100%">验证并进入</button>
+  </div>
+</div>
+
+<!-- ========== ADMIN DASHBOARD ========== -->
+<div id="dashboard" style="display:none">
+  <div class="container">
+    <header class="admin-header">
+      <div>
+        <h1>🌊 湖畔 · 管理面板</h1>
+        <a href="/back-to-the-lake/" class="back-link" target="_blank">→ 查看博客</a>
+      </div>
+      <div class="user-info">
+        <span id="usernameDisplay"></span>
+        <button class="btn btn-sm btn-danger" id="logoutBtn">退出</button>
+      </div>
+    </header>
+
+    <!-- Quick actions -->
+    <div class="dashboard-grid">
+      <div class="card">
+        <h2>快捷操作</h2>
+        <div class="quick-actions">
+          <button class="quick-action" id="newPostBtn">
+            <span><span class="icon">&#x270D;</span> 新建文章</span>
+          </button>
+          <a class="quick-action" href="https://github.com/2789411801-cyber/back-to-the-lake/edit/main/_config.yml" target="_blank" rel="noopener">
+            <span><span class="icon">&#x2699;</span> 编辑站点配置 _config.yml</span>
+          </a>
+          <a class="quick-action" href="https://github.com/2789411801-cyber/back-to-the-lake/edit/main/pages/about.md" target="_blank" rel="noopener">
+            <span><span class="icon">&#x1F464;</span> 编辑关于页面</span>
+          </a>
+          <a class="quick-action" href="https://github.com/2789411801-cyber/back-to-the-lake/upload/main/assets/images" target="_blank" rel="noopener">
+            <span><span class="icon">&#x1F5BC;</span> 上传图片 (GitHub)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Posts -->
+      <div class="card">
+        <h2>近期文章</h2>
+        <div id="postList" class="loading">加载中...</div>
+      </div>
+    </div>
+
+    <!-- Post Editor -->
+    <div id="editor" class="card editor-hidden">
+      <h2 id="editorTitle">新建文章</h2>
+      <div class="form-group">
+        <label>文章标题</label>
+        <input type="text" id="postTitle" placeholder="输入标题...">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>分类</label>
+          <select id="postCategory">
+            <option value="轻语">轻语</option>
+            <option value="漫谈">漫谈</option>
+            <option value="故事">故事</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>日期</label>
+          <input type="date" id="postDate">
+        </div>
+        <div class="form-group">
+          <label>标签 (逗号分隔)</label>
+          <input type="text" id="postTags" placeholder="随笔, 夏日, 雨">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>正文 (Markdown)</label>
+        <textarea id="postContent" placeholder="在此书写..."></textarea>
+        <p class="form-hint">支持 Markdown 语法。第一段会自动用作摘要。</p>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <button class="btn btn-primary" id="publishBtn">发布文章</button>
+        <button class="btn btn-secondary" id="cancelBtn">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+(function() {
+  const REPO_OWNER = '2789411801-cyber';
+  const REPO_NAME = 'back-to-the-lake';
+  const ALLOWED_USER = '2789411801-cyber';
+  const API_BASE = 'https://api.github.com';
+
+  // --- State ---
+  let token = localStorage.getItem('lake_admin_token') || '';
+  let user = null;
+  let posts = [];
+
+  // --- DOM ---
+  const loginScreen = document.getElementById('loginScreen');
+  const dashboard = document.getElementById('dashboard');
+  const tokenInput = document.getElementById('tokenInput');
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const newPostBtn = document.getElementById('newPostBtn');
+  const publishBtn = document.getElementById('publishBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const editor = document.getElementById('editor');
+  const editorTitle = document.getElementById('editorTitle');
+  const postTitle = document.getElementById('postTitle');
+  const postCategory = document.getElementById('postCategory');
+  const postDate = document.getElementById('postDate');
+  const postTags = document.getElementById('postTags');
+  const postContent = document.getElementById('postContent');
+  const postList = document.getElementById('postList');
+  const usernameDisplay = document.getElementById('usernameDisplay');
+  const toast = document.getElementById('toast');
+
+  // --- Init ---
+  postDate.value = new Date().toISOString().slice(0, 10);
+
+  if (token) {
+    tokenInput.value = token;
+    verifyToken();
+  }
+
+  // --- Events ---
+  loginBtn.addEventListener('click', () => { token = tokenInput.value.trim(); if (token) verifyToken(); });
+  tokenInput.addEventListener('keydown', e => { if (e.key === 'Enter') { token = tokenInput.value.trim(); if (token) verifyToken(); } });
+  logoutBtn.addEventListener('click', logout);
+  newPostBtn.addEventListener('click', openEditor);
+  cancelBtn.addEventListener('click', closeEditor);
+  publishBtn.addEventListener('click', publishPost);
+
+  // --- API ---
+  async function api(path, opts = {}) {
+    const res = await fetch(API_BASE + path, {
+      ...opts,
+      headers: { ...opts.headers, 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || `HTTP ${res.status}`);
+    }
+    return res.json();
+  }
+
+  async function verifyToken() {
+    try {
+      user = await api('/user');
+      if (user.login !== ALLOWED_USER) throw new Error('仅限站长「诗心」( ' + ALLOWED_USER + ' ) 访问。当前账号: ' + user.login);
+      localStorage.setItem('lake_admin_token', token);
+      showDashboard();
+    } catch (e) {
+      toastMsg('验证失败: ' + e.message, 'error');
+      localStorage.removeItem('lake_admin_token');
+      token = '';
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('lake_admin_token');
+    token = '';
+    user = null;
+    loginScreen.style.display = 'flex';
+    dashboard.style.display = 'none';
+    tokenInput.value = '';
+  }
+
+  async function showDashboard() {
+    loginScreen.style.display = 'none';
+    dashboard.style.display = 'block';
+    usernameDisplay.textContent = user.login;
+    try {
+      posts = await api('/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/_posts');
+      renderPosts();
+    } catch (e) {
+      postList.innerHTML = '<p>加载文章失败: ' + e.message + '</p>';
+    }
+  }
+
+  function renderPosts() {
+    if (!posts.length) { postList.innerHTML = '<p style="color:var(--text-muted)">暂无文章</p>'; return; }
+    postList.innerHTML = posts
+      .filter(p => p.name.endsWith('.md'))
+      .sort((a,b) => b.name.localeCompare(a.name))
+      .map(p => {
+        const parts = p.name.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/);
+        const date = parts ? parts[1]+'.'+parts[2]+'.'+parts[3] : '';
+        const slug = parts ? parts[4] : p.name.replace('.md','');
+        return '<div class="post-item">' +
+          '<span>' + slug.replace(/-/g, ' ') + '</span>' +
+          '<span style="margin-left:auto;display:flex;gap:0.5rem;align-items:center">' +
+            '<span class="post-date">' + date + '</span>' +
+            '<a href="' + p.html_url + '" target="_blank" class="btn btn-sm btn-secondary" style="font-size:0.72rem">编辑</a>' +
+          '</span>' +
+        '</div>';
+      }).join('');
+  }
+
+  function openEditor() {
+    editor.classList.remove('editor-hidden');
+    editor.classList.add('editor-visible');
+    editorTitle.textContent = '新建文章';
+    postTitle.value = '';
+    postContent.value = '';
+    postTags.value = '';
+    postDate.value = new Date().toISOString().slice(0, 10);
+    postTitle.focus();
+    window.scrollTo({ top: editor.offsetTop - 20, behavior: 'smooth' });
+  }
+
+  function closeEditor() {
+    editor.classList.remove('editor-visible');
+    editor.classList.add('editor-hidden');
+  }
+
+  async function publishPost() {
+    const title = postTitle.value.trim();
+    const content = postContent.value.trim();
+    const category = postCategory.value;
+    const date = postDate.value;
+    const tags = postTags.value.split(',').map(t => t.trim()).filter(Boolean);
+
+    if (!title || !content) { toastMsg('标题和正文不能为空', 'error'); return; }
+
+    const slug = title.replace(/\s+/g, '-').replace(/[^\w一-鿿\-]/g, '').toLowerCase() || 'untitled';
+    const filename = date + '-' + slug + '.md';
+    const tagsYaml = tags.length ? '\ntags: [' + tags.join(', ') + ']' : '';
+
+    const frontMatter = '---\n' +
+      'title: "' + title + '"\n' +
+      'date: ' + date + '\n' +
+      'categories: [' + category + ']' + tagsYaml + '\n' +
+      '---\n\n' + content;
+
+    try {
+      publishBtn.disabled = true;
+      publishBtn.textContent = '发布中...';
+
+      await api('/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/_posts/' + filename, {
+        method: 'PUT',
+        body: JSON.stringify({
+          message: '通过管理面板发布: ' + title,
+          content: btoa(unescape(encodeURIComponent(frontMatter)))
+        })
+      });
+
+      toastMsg('文章已发布！稍后 GitHub Actions 会自动部署。');
+      closeEditor();
+      // Refresh post list
+      posts = await api('/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/_posts');
+      renderPosts();
+    } catch (e) {
+      toastMsg('发布失败: ' + e.message, 'error');
+    } finally {
+      publishBtn.disabled = false;
+      publishBtn.textContent = '发布文章';
+    }
+  }
+
+  function toastMsg(msg, type = 'success') {
+    toast.textContent = msg;
+    toast.className = 'toast toast-' + type + ' show';
+    setTimeout(() => { toast.classList.remove('show'); }, 3500);
+  }
+
+  // --- Keyboard shortcut ---
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+      if (dashboard.style.display === 'none' && token) {
+        verifyToken();
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

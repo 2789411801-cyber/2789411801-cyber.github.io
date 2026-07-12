@@ -1,7 +1,9 @@
 <aside class="sidebar">
   <!-- Author Card -->
   <div class="sidebar-card author-card">
-    <div class="author-avatar">{{ site.author | slice: 0 | upcase }}</div>
+    <div class="author-avatar">
+      <img src="{{ '/assets/images/avatar.jpg' | relative_url }}" alt="{{ site.author }}">
+    </div>
     <h3 class="author-name">{{ site.author }}</h3>
     <p class="author-bio">{{ site.description }}</p>
     <div class="author-socials">
